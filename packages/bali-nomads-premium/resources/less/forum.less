@@ -1,0 +1,166 @@
+// Corporate-premium design system variables
+@body-bg: #090d16;
+@control-bg: #131b2e;
+@primary-color: #6366f1; // sleek indigo
+@secondary-color: #8b5cf6;
+@muted-color: #64748b;
+@text-color: #f8fafc;
+@link-color: #818cf8;
+@border-color: rgba(255, 255, 255, 0.08);
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: @body-bg;
+  color: @text-color;
+}
+
+// Sleek discussion list rows
+.DiscussionListItem {
+  background: #111827;
+  border: 1px solid @border-color;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  padding: 14px 20px;
+  transition: border-color 0.2s, transform 0.2s;
+
+  &:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    transform: translateY(-1px);
+    background: #161e2e;
+  }
+}
+
+// Locked notices
+.premium-locked-notice, .nda-locked-notice {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px dashed rgba(99, 102, 241, 0.3);
+  border-radius: 12px;
+  padding: 30px 20px;
+  text-align: center;
+  margin: 20px 0;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+
+  i {
+    font-size: 36px;
+    color: @primary-color;
+    margin-bottom: 15px;
+    display: block;
+    animation: pulse 2s infinite;
+  }
+
+  .lock-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    display: block;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+
+  .lock-desc {
+    color: #94a3b8;
+    max-width: 480px;
+    margin: 0 auto 20px auto;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .lock-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.9; }
+}
+
+// KYC Badges
+.KycBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 6px;
+  vertical-align: middle;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+
+  i {
+    margin-right: 4px;
+    font-size: 10px;
+  }
+
+  &.KycBadge--investor {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border-color: rgba(16, 185, 129, 0.2);
+  }
+
+  &.KycBadge--consultant {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    border-color: rgba(59, 130, 246, 0.2);
+  }
+}
+
+// NDA Popup Modal Styles
+.NdaModal {
+  max-width: 500px;
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #f8fafc;
+
+  .Modal-header {
+    background: #1e293b;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 15px 20px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .Modal-body {
+    padding: 20px;
+  }
+
+  .nda-content-box {
+    background: #020617;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    height: 180px;
+    overflow-y: auto;
+    padding: 12px;
+    font-size: 13px;
+    color: #cbd5e1;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+
+  .nda-checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: #94a3b8;
+    cursor: pointer;
+    user-select: none;
+
+    input {
+      margin-top: 3px;
+    }
+  }
+
+  .Modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+  }
+}

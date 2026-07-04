@@ -1,0 +1,24 @@
+{
+    "name": "visualmulia/bali-nomads-premium",
+    "description": "Premium features for Bali Digital Nomads Forum: NDA, KYC, Advanced Access Control.",
+    "type": "flarum-extension",
+    "license": "proprietary",
+    "require": {
+        "flarum/core": "^2.0.0-rc.4"
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Bali Nomads Premium",
+            "icon": {
+                "name": "fas fa-shield-alt",
+                "backgroundColor": "#0f172a",
+                "color": "#fff"
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Visualmulia\\BaliNomadsPremium\\": "src/"
+        }
+    }
+}

@@ -1,0 +1,9 @@
+bali-nomads-premium:
+  forum:
+    nda_locked_title: "NDA Consent Required"
+    nda_locked_desc: "This discussion contains sensitive business financials and pitching details. You must agree to the Non-Disclosure Agreement (NDA) to view the details and attachments."
+    nda_sign_btn: "Sign NDA to Unlock"
+    kyc_badge_investor: "Verified Investor"
+    kyc_badge_consultant: "Vetted Consultant"
+    vault_locked_title: "Premium Document Locked"
+    vault_locked_desc: "Detailed legal documents, tax guides, and market reports are restricted. Please sign up or log in to access this content."

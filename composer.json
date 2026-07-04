@@ -40,8 +40,15 @@
         "flarum/sticky": "*",
         "flarum/subscriptions": "*",
         "flarum/suspend": "*",
-        "flarum/tags": "*"
+        "flarum/tags": "*",
+        "visualmulia/bali-nomads-premium": "*"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "packages/*"
+        }
+    ],
     "config": {
         "preferred-install": "dist",
         "sort-packages": true
