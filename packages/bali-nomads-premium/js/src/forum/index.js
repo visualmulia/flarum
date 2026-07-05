@@ -225,10 +225,10 @@ const getKycBadge = (user) => {
 
 // Initialize Flarum Extensions
 app.initializers.add('visualmulia-bali-nomads-premium', () => {
-  const CommentPost = app.forum.postComponents.comment;
-  const UserCard = app.forum.components.UserCard;
-  const DiscussionPage = app.forum.components.DiscussionPage;
-  const SettingsPage = app.forum.components.SettingsPage;
+  const CommentPost = app.postComponents.comment;
+  const UserCard = app.components.UserCard;
+  const DiscussionPage = app.components.DiscussionPage;
+  const SettingsPage = app.components.SettingsPage;
 
   // 3. User Badge UI Integration
   extend(CommentPost.prototype, 'headerItems', function (items) {
