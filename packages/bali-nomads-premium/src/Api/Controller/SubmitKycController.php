@@ -64,7 +64,7 @@ class SubmitKycController implements RequestHandlerInterface
         $actor->kyc_status = 'pending';
         $actor->kyc_tier = $kycTier;
         $actor->kyc_document_type = $docType;
-        $actor->kyc_document_number = encrypt($docNumber);
+        $actor->kyc_document_number = \Illuminate\Container\Container::getInstance()->make('encrypter')->encrypt($docNumber);
         $actor->kyc_document_url = '/api/kyc/document/' . $secureFilename;
         $actor->kyc_submitted_at = new \DateTime();
         $actor->save();

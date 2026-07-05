@@ -6,7 +6,6 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface;
 use Laminas\Diactoros\Response\JsonResponse;
-use Illuminate\Support\Facades\DB;
 use Flarum\Http\RequestUtil;
 
 class CreateNdaConsentController implements RequestHandlerInterface
@@ -23,12 +22,13 @@ class CreateNdaConsentController implements RequestHandlerInterface
             return new JsonResponse(['error' => 'Missing discussionId'], 400);
         }
 
-        $discussionExists = DB::table('discussions')->where('id', $discussionId)->exists();
+        $db = \Illuminate\Container\Container::getInstance()->make('db');
+        $discussionExists = $db->table('discussions')->where('id', $discussionId)->exists();
         if (!$discussionExists) {
             return new JsonResponse(['error' => 'Discussion not found'], 404);
         }
 
-        DB::table('user_nda_consents')->updateOrInsert(
+        $db->table('user_nda_consents')->updateOrInsert(
             ['user_id' => $actor->id, 'discussion_id' => $discussionId],
             [
                 'agreed_at' => new \DateTime(),

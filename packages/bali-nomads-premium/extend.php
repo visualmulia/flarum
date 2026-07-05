@@ -7,7 +7,6 @@ use Flarum\Api\Schema\Boolean;
 use Flarum\Api\Schema\Str;
 use Flarum\Extend;
 use Flarum\Http\RequestUtil;
-use Illuminate\Support\Facades\DB;
 use Visualmulia\BaliNomadsPremium\Api\Controller\CreateNdaConsentController;
 use Visualmulia\BaliNomadsPremium\Api\Controller\SubmitKycController;
 use Visualmulia\BaliNomadsPremium\Api\Controller\VerifyUserController;
@@ -36,7 +35,7 @@ return [
                 ->get(fn ($user) => $user->kyc_document_type),
             Str::make('kycDocumentNumber')
                 ->visible(fn ($user, $context) => RequestUtil::getActor($context->request)->isAdmin() || RequestUtil::getActor($context->request)->id === $user->id)
-                ->get(fn ($user) => $user->kyc_document_number ? decrypt($user->kyc_document_number) : null),
+                ->get(fn ($user) => $user->kyc_document_number ? \Illuminate\Container\Container::getInstance()->make('encrypter')->decrypt($user->kyc_document_number) : null),
             Str::make('kycDocumentUrl')
                 ->visible(fn ($user, $context) => RequestUtil::getActor($context->request)->isAdmin() || RequestUtil::getActor($context->request)->id === $user->id)
                 ->get(fn ($user) => $user->kyc_document_url),
@@ -76,7 +75,7 @@ return [
                     if ($actor->isAdmin() || $actor->id === $discussion->user_id) {
                         return true;
                     }
-                    return DB::table('user_nda_consents')
+                    return \Illuminate\Container\Container::getInstance()->make('db')->table('user_nda_consents')
                         ->where('user_id', $actor->id)
                         ->where('discussion_id', $discussion->id)
                         ->exists();
@@ -124,7 +123,7 @@ return [
                         if ($actor->isAdmin() || $actor->id === $discussion->user_id || $actor->id === $post->user_id) {
                             $hasAgreedNda = true;
                         } else {
-                            $hasAgreedNda = DB::table('user_nda_consents')
+                            $hasAgreedNda = \Illuminate\Container\Container::getInstance()->make('db')->table('user_nda_consents')
                                 ->where('user_id', $actor->id)
                                 ->where('discussion_id', $discussion->id)
                                 ->exists();
