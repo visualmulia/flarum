@@ -253,17 +253,25 @@ app.initializers.add('visualmulia-bali-nomads-premium', () => {
 
   // 4. NDA Popup Logic on Discussion Page
   extend(DiscussionPageClass.prototype, 'oncreate', function () {
+    this.ndaPrompted = false;
+  });
+
+  extend(DiscussionPageClass.prototype, 'onupdate', function () {
     const discussion = this.discussion;
-    if (discussion && discussion.attribute('requiresNda') && !discussion.attribute('hasAgreedNda')) {
+    if (discussion && discussion.attribute('requiresNda') && !discussion.attribute('hasAgreedNda') && !this.ndaPrompted) {
+      this.ndaPrompted = true;
       app.modal.show(NdaModal, { discussion });
     }
+  });
 
-    // Capture button clicks on redacted post NDA buttons
-    document.addEventListener('click', (e) => {
-      if (e.target && e.target.classList.contains('sign-nda-btn')) {
+  // Capture button clicks on redacted post NDA buttons globally
+  document.addEventListener('click', (e) => {
+    if (e.target && e.target.classList.contains('sign-nda-btn')) {
+      const discussion = app.current.data.discussion;
+      if (discussion) {
         app.modal.show(NdaModal, { discussion });
       }
-    });
+    }
   });
 
   // 5. KYC Settings Form Integration
