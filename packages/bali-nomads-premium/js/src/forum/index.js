@@ -2,6 +2,10 @@ import app from 'flarum/forum/app';
 import { extend } from 'flarum/common/extend';
 import Modal from 'flarum/common/components/Modal';
 import Button from 'flarum/common/components/Button';
+import CommentPost from 'flarum/forum/components/CommentPost';
+import UserCard from 'flarum/forum/components/UserCard';
+import DiscussionPage from 'flarum/forum/components/DiscussionPage';
+import SettingsPage from 'flarum/forum/components/SettingsPage';
 
 // -------------------------------------------------------------
 // 1. NDA Agreement Modal
@@ -225,13 +229,13 @@ const getKycBadge = (user) => {
 
 // Initialize Flarum Extensions
 app.initializers.add('visualmulia-bali-nomads-premium', () => {
-  const CommentPost = app.postComponents.comment;
-  const UserCard = app.components.UserCard;
-  const DiscussionPage = app.components.DiscussionPage;
-  const SettingsPage = app.components.SettingsPage;
+  const CommentPostClass = CommentPost.default || CommentPost;
+  const UserCardClass = UserCard.default || UserCard;
+  const DiscussionPageClass = DiscussionPage.default || DiscussionPage;
+  const SettingsPageClass = SettingsPage.default || SettingsPage;
 
   // 3. User Badge UI Integration
-  extend(CommentPost.prototype, 'headerItems', function (items) {
+  extend(CommentPostClass.prototype, 'headerItems', function (items) {
     const user = this.attrs.post.user();
     const badge = getKycBadge(user);
     if (badge) {
@@ -239,7 +243,7 @@ app.initializers.add('visualmulia-bali-nomads-premium', () => {
     }
   });
 
-  extend(UserCard.prototype, 'infoItems', function (items) {
+  extend(UserCardClass.prototype, 'infoItems', function (items) {
     const user = this.attrs.user;
     const badge = getKycBadge(user);
     if (badge) {
@@ -248,7 +252,7 @@ app.initializers.add('visualmulia-bali-nomads-premium', () => {
   });
 
   // 4. NDA Popup Logic on Discussion Page
-  extend(DiscussionPage.prototype, 'oncreate', function () {
+  extend(DiscussionPageClass.prototype, 'oncreate', function () {
     const discussion = this.discussion;
     if (discussion && discussion.attribute('requiresNda') && !discussion.attribute('hasAgreedNda')) {
       app.modal.show(NdaModal, { discussion });
@@ -263,7 +267,7 @@ app.initializers.add('visualmulia-bali-nomads-premium', () => {
   });
 
   // 5. KYC Settings Form Integration
-  extend(SettingsPage.prototype, 'settingsItems', function (items) {
+  extend(SettingsPageClass.prototype, 'settingsItems', function (items) {
     items.add('kyc-verification', <KycSettingsSection />, 80);
   });
 });
