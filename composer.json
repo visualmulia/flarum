@@ -41,6 +41,8 @@
         "flarum/subscriptions": "*",
         "flarum/suspend": "*",
         "flarum/tags": "*",
+        "fof/badges": "*",
+        "fof/mason": "*",
         "visualmulia/bali-nomads-premium": "*"
     },
     "repositories": [
