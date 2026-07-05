@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Schema\Builder;
 
 return [
-    'up' => function () {
+    'up' => function (Builder $schema) {
+        $db = $schema->getConnection();
         $tags = [
             [
                 'name' => 'The Vault',
@@ -36,15 +37,16 @@ return [
         ];
 
         foreach ($tags as $tag) {
-            $exists = DB::table('tags')->where('slug', $tag['slug'])->exists();
+            $exists = $db->table('tags')->where('slug', $tag['slug'])->exists();
             if (!$exists) {
-                DB::table('tags')->insert(array_merge($tag, [
+                $db->table('tags')->insert(array_merge($tag, [
                     'created_at' => new \DateTime(),
                 ]));
             }
         }
     },
-    'down' => function () {
-        DB::table('tags')->whereIn('slug', ['the-vault', 'business-for-sale', 'business-need-fundings', 'business-consulting'])->delete();
+    'down' => function (Builder $schema) {
+        $db = $schema->getConnection();
+        $db->table('tags')->whereIn('slug', ['the-vault', 'business-for-sale', 'business-need-fundings', 'business-consulting'])->delete();
     }
 ];
