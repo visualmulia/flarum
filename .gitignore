@@ -9,5 +9,7 @@ core
 studio.json
 composer.lock
 node_modules/
+babisniskey.pem
+
 
 
