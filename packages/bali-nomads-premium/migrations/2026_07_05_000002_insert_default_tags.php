@@ -43,7 +43,7 @@ return [
                 ]));
             }
         }
-    ],
+    },
     'down' => function () {
         DB::table('tags')->whereIn('slug', ['the-vault', 'business-for-sale', 'business-need-fundings', 'business-consulting'])->delete();
     }
