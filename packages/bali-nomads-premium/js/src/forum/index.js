@@ -1,9 +1,5 @@
 import app from 'flarum/forum/app';
 import { extend } from 'flarum/common/extend';
-import CommentPost from 'flarum/forum/components/CommentPost';
-import UserCard from 'flarum/forum/components/UserCard';
-import DiscussionPage from 'flarum/forum/components/DiscussionPage';
-import SettingsPage from 'flarum/forum/components/SettingsPage';
 import Modal from 'flarum/common/components/Modal';
 import Button from 'flarum/common/components/Button';
 
@@ -229,6 +225,11 @@ const getKycBadge = (user) => {
 
 // Initialize Flarum Extensions
 app.initializers.add('visualmulia-bali-nomads-premium', () => {
+  const CommentPost = app.forum.postComponents.comment;
+  const UserCard = app.forum.components.UserCard;
+  const DiscussionPage = app.forum.components.DiscussionPage;
+  const SettingsPage = app.forum.components.SettingsPage;
+
   // 3. User Badge UI Integration
   extend(CommentPost.prototype, 'headerItems', function (items) {
     const user = this.attrs.post.user();
