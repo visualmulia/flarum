@@ -42,6 +42,7 @@
         "flarum/suspend": "*",
         "flarum/tags": "*",
         "fof/badges": "*",
+        "fof/discussion-templates": "*",
         "visualmulia/bali-nomads-premium": "*"
     },
     "repositories": [
