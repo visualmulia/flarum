@@ -45,6 +45,7 @@
         "fof/discussion-templates": "*",
         "fof/upload": "*",
         "fof/share-social": "*",
+        "fof/gamification": "*",
         "visualmulia/bali-nomads-premium": "*"
     },
     "repositories": [
