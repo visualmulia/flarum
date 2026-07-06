@@ -44,6 +44,7 @@
         "fof/badges": "*",
         "fof/discussion-templates": "*",
         "fof/upload": "*",
+        "fof/share-social": "*",
         "visualmulia/bali-nomads-premium": "*"
     },
     "repositories": [
