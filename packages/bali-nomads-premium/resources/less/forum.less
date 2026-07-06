@@ -42,7 +42,7 @@ body {
   .Badge-icon.@{icon-class},
   .BadgeModal-icon i.@{icon-class},
   i.Badge-icon.@{icon-class} {
-    content: url(@image-url) !important;
+    content: @image-url !important;
     display: inline-block !important;
     width: 28px !important;
     height: 28px !important;
@@ -53,14 +53,14 @@ body {
 }
 
 // Apply 3D badges
-.make-3d-badge(fa-code, '/landing/assets/badges/developer.png');
-.make-3d-badge(fa-bullhorn, '/landing/assets/badges/marketer.png');
-.make-3d-badge(fa-paint-brush, '/landing/assets/badges/creator.png');
-.make-3d-badge(fa-medal, '/landing/assets/badges/silver_award.png');
-.make-3d-badge(fa-award, '/landing/assets/badges/gold_award.png');
-.make-3d-badge(fa-trophy, '/landing/assets/badges/masterpiece_award.png');
-.make-3d-badge(fa-fire, '/landing/assets/badges/streak.png');
-.make-3d-badge(fa-fire-alt, '/landing/assets/badges/streak.png');
+.make-3d-badge(fa-code, ~"url(/assets/badges/developer.png)");
+.make-3d-badge(fa-bullhorn, ~"url(/assets/badges/marketer.png)");
+.make-3d-badge(fa-paint-brush, ~"url(/assets/badges/creator.png)");
+.make-3d-badge(fa-medal, ~"url(/assets/badges/silver_award.png)");
+.make-3d-badge(fa-award, ~"url(/assets/badges/gold_award.png)");
+.make-3d-badge(fa-trophy, ~"url(/assets/badges/masterpiece_award.png)");
+.make-3d-badge(fa-fire, ~"url(/assets/badges/streak.png)");
+.make-3d-badge(fa-fire-alt, ~"url(/assets/badges/streak.png)");
 
 // Alignments and spacing for Badge containers
 .PrimaryBadge, .UserCardBadge, .BadgeCard-icon, .UserCardBadge-icon {
