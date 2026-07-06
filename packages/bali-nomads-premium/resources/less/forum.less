@@ -33,3 +33,54 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
   }
 }
+
+// 3D Badges Overrides
+.make-3d-badge(@icon-class, @image-url) {
+  .PrimaryBadge i.@{icon-class}, 
+  .UserCardBadge i.@{icon-class}, 
+  .BadgeCard-icon i.@{icon-class},
+  .Badge-icon.@{icon-class},
+  .BadgeModal-icon i.@{icon-class},
+  i.Badge-icon.@{icon-class} {
+    content: url(@image-url) !important;
+    display: inline-block !important;
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 0 !important; // Hide FontAwesome text fallback
+    vertical-align: middle !important;
+    line-height: 1 !important;
+  }
+}
+
+// Apply 3D badges
+.make-3d-badge(fa-code, '/landing/assets/badges/developer.png');
+.make-3d-badge(fa-bullhorn, '/landing/assets/badges/marketer.png');
+.make-3d-badge(fa-paint-brush, '/landing/assets/badges/creator.png');
+.make-3d-badge(fa-medal, '/landing/assets/badges/silver_award.png');
+.make-3d-badge(fa-award, '/landing/assets/badges/gold_award.png');
+.make-3d-badge(fa-trophy, '/landing/assets/badges/masterpiece_award.png');
+.make-3d-badge(fa-fire, '/landing/assets/badges/streak.png');
+.make-3d-badge(fa-fire-alt, '/landing/assets/badges/streak.png');
+
+// Alignments and spacing for Badge containers
+.PrimaryBadge, .UserCardBadge, .BadgeCard-icon, .UserCardBadge-icon {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin-right: 4px !important;
+  width: 28px !important;
+  height: 28px !important;
+  
+  &::before {
+    display: none !important;
+  }
+}
+
+.BadgeCard-icon {
+  background: transparent !important;
+}
+
