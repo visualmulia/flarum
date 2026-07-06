@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Widatama - Komunitas & Hub Produk Digital AI Terbesar di Indonesia</title>
+  <meta name="description" content="Komunitas & Marketplace AI Terbesar di Indonesia. Belajar bareng, tingkatkan produktivitas, dan bangun aset digital berbasis AI yang menghasilkan cuan.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <i class="fas fa-brain"></i> Widatama
+      </a>
+      <div class="nav-links">
+        <a href="https://forum.widatama.com" class="nav-link">Komunitas</a>
+        <a href="#dashboard" class="nav-link">Tools Rp0</a>
+        <a href="https://forum.widatama.com" class="cta-button">
+          Masuk ke Komunitas (Gratis) <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="badge">Rebranding & Pivot Baru</div>
+    <h1>Widatama - Wadah Inovasi Digital Anak Muda</h1>
+    <p>Komunitas & Marketplace AI Terbesar di Indonesia. Belajar bareng, tingkatkan produktivitas, dan bangun aset digital berbasis AI yang menghasilkan cuan secara konsisten.</p>
+    <div style="display: flex; justify-content: center; gap: 1rem;">
+      <a href="https://forum.widatama.com" class="cta-button" style="padding: 0.9rem 2.2rem; font-size: 1.05rem;">
+        Masuk Forum Komunitas <i class="fas fa-users"></i>
+      </a>
+      <a href="#dashboard" class="action-btn" style="padding: 0.9rem 2.2rem; font-size: 1.05rem; border-radius: 9999px;">
+        Coba Tool Rp0 AI <i class="fas fa-magic"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Dashboard Tools Section -->
+  <main class="dashboard-container" id="dashboard">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-title">Local Tools (Client-Side)</div>
+      <div class="menu-group">
+        <button class="menu-item active" onclick="switchTool('html-maker')">
+          <i class="fas fa-code"></i> HTML Landing Maker
+        </button>
+        <button class="menu-item" onclick="switchTool('sales-maker')">
+          <i class="fas fa-pen-nib"></i> Sales Page Letter
+        </button>
+        <button class="menu-item" onclick="switchTool('mockup-gen')">
+          <i class="fas fa-desktop"></i> 3D Product Mockup
+        </button>
+      </div>
+
+      <div class="sidebar-title">AI Text Generators (Free API)</div>
+      <div class="menu-group">
+        <button class="menu-item" onclick="switchTool('wa-copy')">
+          <i class="fab fa-whatsapp"></i> WA Promo Script
+        </button>
+        <button class="menu-item" onclick="switchTool('short-script')">
+          <i class="fas fa-video"></i> Video Script Reels/TikTok
+        </button>
+        <button class="menu-item" onclick="switchTool('headline-rater')">
+          <i class="fas fa-star"></i> Headline Hook Rater
+        </button>
+      </div>
+    </aside>
+
+    <!-- Content Viewport -->
+    <section class="content-area">
+      
+      <!-- TOOL 1: HTML Landing Maker -->
+      <div class="tool-section active" id="sec-html-maker">
+        <div class="tool-header">
+          <h2>💡 HTML Landing Page Maker (No-Code Template)</h2>
+          <p>Buat draf landing page sederhana secara real-time dan salin kode HTML bersihnya untuk dibagikan di forum.</p>
+        </div>
+        <div class="tool-grid">
+          <div class="input-panel">
+            <div class="form-group">
+              <label for="html-headline">Headline Utama</label>
+              <input type="text" id="html-headline" placeholder="Contoh: Kuasai Gemini AI Dalam 7 Hari Tanpa Koding" value="Kuasai Gemini AI Dalam 7 Hari Tanpa Koding">
+            </div>
+            <div class="form-group">
+              <label for="html-desc">Deskripsi Produk/Jasa</label>
+              <textarea id="html-desc" rows="4" placeholder="Contoh: E-book panduan praktis berisi 50+ prompt siap pakai untuk melipatgandakan produktivitas harian Anda.">E-book panduan praktis berisi 50+ prompt siap pakai untuk melipatgandakan produktivitas harian Anda.</textarea>
+            </div>
+            <div class="form-group">
+              <label for="html-price">Harga (IDR)</label>
+              <input type="text" id="html-price" placeholder="Contoh: Rp 99.000" value="Rp 99.000">
+            </div>
+            <div class="form-group">
+              <label for="html-wa">Link WhatsApp / Kontak</label>
+              <input type="text" id="html-wa" placeholder="Contoh: https://wa.me/628123456789" value="https://wa.me/628123456789">
+            </div>
+          </div>
+          <div class="result-panel">
+            <div class="result-header">
+              <span class="result-title">Live Preview</span>
+              <button class="action-btn" onclick="copyHTMLCode()">
+                <i class="fas fa-copy"></i> Copy HTML
+              </button>
+            </div>
+            <div class="preview-frame-container">
+              <iframe id="html-preview-iframe" class="preview-iframe"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOOL 2: Sales Page Maker -->
+      <div class="tool-section" id="sec-sales-maker">
+        <div class="tool-header">
+          <h2>📝 Sales Page Maker (Copywriting Structure)</h2>
+          <p>Tulis sales letter terstruktur berkonversi tinggi dengan formula terarah (Hook, Problem, Solution, Scarcity, CTA).</p>
+        </div>
+        <div class="tool-grid">
+          <div class="input-panel">
+            <div class="form-group">
+              <label for="sales-hook">1. Hook Pembuka (Menangkap Perhatian)</label>
+              <input type="text" id="sales-hook" value="Capek kerja lembur tiap hari tapi hasil segitu-gitu aja?">
+            </div>
+            <div class="form-group">
+              <label for="sales-problem">2. Problem (Masalah Utama Pelanggan)</label>
+              <textarea id="sales-problem" rows="2">Waktu habis buat bikin artikel blog dan copy iklan sosmed manual berjam-jam.</textarea>
+            </div>
+            <div class="form-group">
+              <label for="sales-solution">3. Solution (Produk Anda Sebagai Solusi)</label>
+              <textarea id="sales-solution" rows="2">Gunakan templates AI Copywriting generator otomatis dari Widatama!</textarea>
+            </div>
+            <div class="form-group">
+              <label for="sales-scarcity">4. Scarcity (Batasan / Urgensi Penawaran)</label>
+              <input type="text" id="sales-scarcity" value="Diskon 50% hanya untuk 100 pembeli pertama hari ini!">
+            </div>
+            <div class="form-group">
+              <label for="sales-cta">5. Call to Action (Ajakan Bertindak)</label>
+              <input type="text" id="sales-cta" value="Klik tombol di bawah ini untuk akses instan sekarang!">
+            </div>
+          </div>
+          <div class="result-panel">
+            <div class="result-header">
+              <span class="result-title">Copywriting Letter</span>
+              <button class="action-btn" onclick="copySalesLetter()">
+                <i class="fas fa-copy"></i> Copy Text
+              </button>
+            </div>
+            <div class="output-container markdown-rendered" id="sales-output-preview" style="background:#0b0f19; padding: 1.5rem; overflow-y:auto; border-radius:6px; color:#f3f4f6; font-family:var(--font-body);">
+              <!-- Rendered copywriting -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOOL 3: 3D Product Mockup -->
+      <div class="tool-section" id="sec-mockup-gen">
+        <div class="tool-header">
+          <h2>🖼️ Premium Product Mockup Generator</h2>
+          <p>Unggah cover desain produk digital Anda dan wrap secara instan ke mockup 3D Laptop, Mobile, atau E-Book tanpa watermark.</p>
+        </div>
+        <div class="tool-grid">
+          <div class="input-panel">
+            <div class="form-group">
+              <label for="mockup-type">Tipe Layar Mockup</label>
+              <select id="mockup-type" onchange="renderMockup()">
+                <option value="laptop">Laptop Screen (MacBook Style)</option>
+                <option value="mobile">Mobile Screen (iPhone Style)</option>
+                <option value="book">E-Book Stand Container</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="mockup-file">Pilih Gambar Cover (PNG/JPG)</label>
+              <input type="file" id="mockup-file" accept="image/*" onchange="handleMockupUpload(event)">
+            </div>
+            <button class="submit-btn" onclick="downloadMockup()" style="margin-top: 1rem; background-color: var(--accent);">
+              <i class="fas fa-download"></i> Download Mockup (PNG)
+            </button>
+          </div>
+          <div class="result-panel">
+            <div class="result-header">
+              <span class="result-title">3D Preview Layout</span>
+            </div>
+            <div id="mockup-canvas-wrapper">
+              <canvas id="mockup-canvas" width="600" height="450"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOOL 4: AI WA Copywriting -->
+      <div class="tool-section" id="sec-wa-copy">
+        <div class="tool-header">
+          <h2>💬 AI WhatsApp Copywriting Generator</h2>
+          <p>Membuat 3 variasi naskah promosi WhatsApp siap pakai dengan pemisahan spasi yang rapi dan emoji menarik.</p>
+        </div>
+        <div class="tool-grid">
+          <div class="input-panel">
+            <div class="form-group">
+              <label for="wa-prod-name">Nama Produk/Layanan</label>
+              <input type="text" id="wa-prod-name" placeholder="Contoh: Premium E-Book Panduan Prompt AI">
+            </div>
+            <div class="form-group">
+              <label for="wa-audience">Target Audiens Utama</label>
+              <input type="text" id="wa-audience" placeholder="Contoh: Mahasiswa, Ibu Rumah Tangga, Pebisnis Online">
+            </div>
+            <button class="submit-btn" id="wa-submit-btn" onclick="generateAICopy('wa_copy')">
+              <i class="fas fa-robot"></i> Buat Naskah AI
+            </button>
+            <div class="rate-limit-info" id="wa-rate-limit-badge">Kredit Gratis Hari Ini: 5/5</div>
+          </div>
+          <div class="result-panel">
+            <div class="result-header">
+              <span class="result-title">Hasil Copywriting AI</span>
+              <button class="action-btn" onclick="copyToClipboard('wa-output')">
+                <i class="fas fa-copy"></i> Copy
+              </button>
+            </div>
+            <div class="output-container" id="wa-output">Hasil akan muncul di sini setelah Anda mengklik tombol...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOOL 5: AI Short Video Script -->
+      <div class="tool-section" id="sec-short-script">
+        <div class="tool-header">
+          <h2>🎬 AI TikTok & Reels Script Writer</h2>
+          <p>Tulis naskah video pendek terarah berdurasi 30-60 detik yang memfokuskan hook killer 3 detik pertama.</p>
+        </div>
+        <div class="tool-grid">
+          <div class="input-panel">
+            <div class="form-group">
+              <label for="script-topic">Topik Video / Ide Utama</label>
+              <input type="text" id="script-topic" placeholder="Contoh: 3 Tools AI Gratis Pengganti Canva Premium">
+            </div>
+            <button class="submit-btn" id="script-submit-btn" onclick="generateAICopy('short_script')">
+              <i class="fas fa-robot"></i> Tulis Naskah Video
+            </button>
+            <div class="rate-limit-info" id="script-rate-limit-badge">Kredit Gratis Hari Ini: 5/5</div>
+          </div>
+          <div class="result-panel">
+            <div class="result-header">
+              <span class="result-title">Hasil Naskah AI</span>
+              <button class="action-btn" onclick="copyToClipboard('script-output')">
+                <i class="fas fa-copy"></i> Copy
+              </button>
+            </div>
+            <div class="output-container" id="script-output">Hasil akan muncul di sini setelah Anda mengklik tombol...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOOL 6: AI Headline Rater -->
+      <div class="tool-section" id="sec-headline-rater">
+        <div class="tool-header">
+          <h2>🎯 AI Headline & Hook Rating Tester</h2>
+          <p>Nilai daya pikat headline/judul produk digital Anda dari 1-100 dan dapatkan opsi perbaikan alternatifnya.</p>
+        </div>
+        <div class="tool-grid">
+          <div class="input-panel">
+            <div class="form-group">
+              <label for="rate-headline">Judul / Headline Yang Ingin Diuji</label>
+              <input type="text" id="rate-headline" placeholder="Contoh: Cara Kaya Cepat Dari Rumah Pake AI">
+            </div>
+            <button class="submit-btn" id="rate-submit-btn" onclick="generateAICopy('headline_rater')">
+              <i class="fas fa-robot"></i> Analisis Headline
+            </button>
+            <div class="rate-limit-info" id="rate-rate-limit-badge">Kredit Gratis Hari Ini: 5/5</div>
+          </div>
+          <div class="result-panel">
+            <div class="result-header">
+              <span class="result-title">Skor & Alternatif Perbaikan</span>
+              <button class="action-btn" onclick="copyToClipboard('rate-output')">
+                <i class="fas fa-copy"></i> Copy
+              </button>
+            </div>
+            <div class="output-container" id="rate-output">Hasil analisa akan muncul di sini setelah Anda mengklik tombol...</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-cta">
+      <h2>Mulai Belajar & Bangun Produk AI Anda Hari Ini!</h2>
+      <p>Masuk ke forum komunitas Widatama sekarang juga. Diskusikan ide Anda, berkolaborasi dengan kreator lain, dan temukan cara baru mendapatkan penghasilan dari era kecerdasan buatan.</p>
+      <a href="https://forum.widatama.com" class="cta-button" style="padding: 1rem 2.5rem; font-size: 1.1rem;">
+        Launch Platform (Gratis) <i class="fas fa-paper-plane"></i>
+      </a>
+    </div>
+    <div class="footer-credits">
+      <p>&copy; 2026 Widatama (Wadah Inovasi Digital Anak Muda). All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
