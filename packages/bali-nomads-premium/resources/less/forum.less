@@ -25,12 +25,18 @@ body {
   margin-bottom: 8px;
   padding: 14px 20px;
   transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  z-index: 1;
 
-  &:hover {
+  &:hover,
+  &:focus-within,
+  &:has(.Dropdown.open),
+  &:has(.open) {
     border-color: rgba(79, 70, 229, 0.4);
     transform: translateY(-1px);
     background: #f8fafc;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    z-index: 15 !important;
   }
 }
 
