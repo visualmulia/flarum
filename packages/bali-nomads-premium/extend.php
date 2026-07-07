@@ -2,6 +2,7 @@
 
 use Flarum\Extend;
 use Visualmulia\BaliNomadsPremium\Api\Controller\CookSocialsController;
+use Visualmulia\BaliNomadsPremium\Api\Controller\UserRoleController;
 
 return [
     (new Extend\Frontend('forum'))
@@ -12,5 +13,7 @@ return [
         ->js(__DIR__.'/js/dist/admin.js'),
 
     (new Extend\Routes('api'))
-        ->post('/cook-socials', 'cook.socials', CookSocialsController::class),
+        ->post('/cook-socials', 'cook.socials', CookSocialsController::class)
+        ->get('/user-role', 'user.role.get', UserRoleController::class)
+        ->post('/user-role', 'user.role.post', UserRoleController::class),
 ];
