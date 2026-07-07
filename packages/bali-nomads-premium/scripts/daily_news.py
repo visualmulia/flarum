@@ -265,7 +265,7 @@ def main():
         
     # Append attribution if enabled (clean plain-text source credit)
     if INCLUDE_ATTRIBUTION:
-        post_body += f"\n\n---\n*<small>Ditulis ulang untuk komunitas Widatama. Terinspirasi dari liputan {target_item['source_name']}.</small>*"
+        post_body += f"\n\n---\n*Ditulis ulang untuk komunitas Widatama. Terinspirasi dari liputan {target_item['source_name']}.*"
         
     # Post to Flarum
     success = post_to_flarum(post_title, post_body, TAG_ID)
