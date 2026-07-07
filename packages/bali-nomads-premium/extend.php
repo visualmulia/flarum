@@ -1,6 +1,7 @@
 <?php
 
 use Flarum\Extend;
+use Visualmulia\BaliNomadsPremium\Api\Controller\CookSocialsController;
 
 return [
     (new Extend\Frontend('forum'))
@@ -9,4 +10,7 @@ return [
 
     (new Extend\Frontend('admin'))
         ->js(__DIR__.'/js/dist/admin.js'),
+
+    (new Extend\Routes('api'))
+        ->post('/cook-socials', 'cook.socials', CookSocialsController::class),
 ];
