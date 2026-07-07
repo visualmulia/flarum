@@ -15,7 +15,7 @@ RSS_FEEDS = [
 FLARUM_API_URL = "https://forum.widatama.com/api/discussions"
 FLARUM_API_KEY = os.environ.get("FLARUM_API_KEY", "widatamamasterkey7802546c01e94ebd87fa34b4ed10fe41")
 AIBOY_USER_ID = 7
-TAG_ID = 1  # Pintar AI & Produktivitas
+TAG_ID = 3  # Jagat Raya (General Discussion)
 INCLUDE_ATTRIBUTION = True  # Set to False to remove source attribution completely
 
 # Determine working directory
