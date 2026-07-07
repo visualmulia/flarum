@@ -101,7 +101,7 @@ def parse_rss(xml_data):
     return items
 
 def rewrite_with_gemini(gemini_key, orig_title, orig_desc, orig_link):
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={gemini_key}"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={gemini_key}"
     
     prompt = f"""
 Terjemahkan dan tulis ulang berita teknologi/AI berikut menjadi postingan forum komunitas yang seru, informatif, dan sangat menarik untuk dibaca anak muda Indonesia.
