@@ -106,13 +106,14 @@ def expand_with_gemini(gemini_key, caption):
     
     prompt = f"""
 Tolong lakukan pencarian Google secara live untuk meneliti topik teknologi berikut secara mendalam. 
-Setelah mendapatkan data riset, perluas deskripsi Instagram yang singkat ini menjadi artikel/postingan forum komunitas yang komprehensif, mendalam, edukatif, dan sangat menarik untuk dibaca anak muda Indonesia.
+Setelah mendapatkan data riset, perluas deskripsi topik yang singkat ini menjadi artikel/postingan forum komunitas yang komprehensif, mendalam, edukatif, dan sangat menarik untuk dibaca anak muda Indonesia.
 
 Panduan Penulisan:
 1. Gunakan gaya bahasa santai, kekinian, bersahabat, tapi tetap kredibel dan berbobot ala komunitas "Widatama".
 2. Jelaskan konsep teknologinya secara terperinci (misalnya: tambahkan best practices, analogi sederhana, atau contoh potongan kode program jika relevan).
 3. Berikan sub-heading yang menarik, list/bullet points, dan gunakan cetak tebal untuk istilah kunci.
 4. Ajak pembaca untuk berdiskusi/meninggalkan pendapat mereka di akhir postingan.
+5. JANGAN sebutkan atau singgung sama sekali bahwa informasi ini berasal dari Instagram atau media sosial lainnya. Tulisan harus seolah-olah ditulis langsung secara organik oleh Anda sebagai pengguna forum sejati.
 
 Format output harus menggunakan format terstruktur seperti di bawah ini. Pastikan Anda menulis penanda [TITLE] dan [BODY] dengan tepat untuk memisahkan judul dan isi postingan:
 
@@ -122,7 +123,7 @@ Judul postingan yang memikat, klikbait cerdas, maksimal 75 karakter.
 [BODY]
 Isi tulisan artikel forum dalam format Markdown lengkap dengan emoji dan penjelasan mendalam.
 
-Topik dari Instagram Caption:
+Topik deskripsi singkat:
 {caption}
 """
 
@@ -263,9 +264,6 @@ def main():
                 post_body += f"- [{title}]({link})\n"
                 seen_links.add(link)
                 
-    # Append Instagram source attribution
-    post_body += f"\n\n---\n*Artikel ini dikembangkan secara otomatis dari riset mendalam. Inspirasi topik: [@{INSTAGRAM_USERNAME} di Instagram]({target_item['post_link']}).*"
-    
     # Post to Flarum
     success = post_to_flarum(content['title'], post_body, TAG_ID)
     if success:
