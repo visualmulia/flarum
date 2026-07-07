@@ -7,7 +7,7 @@ import urllib.error
 import xml.etree.ElementTree as ET
 
 # Configuration
-RSS_FEED_URL = "https://venturebeat.com/category/ai/feed/"
+RSS_FEED_URL = "https://venturebeat.com/category/ai/feed"
 FLARUM_API_URL = "https://forum.widatama.com/api/discussions"
 FLARUM_API_KEY = os.environ.get("FLARUM_API_KEY", "widatamamasterkey7802546c01e94ebd87fa34b4ed10fe41")
 AIBOY_USER_ID = 7
