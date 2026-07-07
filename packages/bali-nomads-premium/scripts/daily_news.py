@@ -111,7 +111,7 @@ Ajak pembaca untuk berdiskusi atau berkomentar di akhir postingan.
 
 Format keluaran harus dalam bentuk JSON mentah (raw JSON) dengan struktur objek sebagai berikut:
 {{
-  "title": "[Judul postingan yang sangat menarik/clickbait cerdas dalam Bahasa Indonesia]",
+  "title": "[Judul postingan yang sangat menarik/clickbait cerdas dalam Bahasa Indonesia. MAKSIMAL 75 KARAKTER]",
   "body": "[Isi tulisan lengkap dalam Bahasa Indonesia menggunakan format Markdown. Gunakan emoji yang relevan, list, sub-heading, dan cetak tebal untuk poin penting]"
 }}
 
@@ -239,6 +239,8 @@ def main():
         sys.exit(1)
         
     post_title = rewrite.get("title", target_item["title"])
+    if len(post_title) > 80:
+        post_title = post_title[:77] + "..."
     post_body = rewrite.get("body", target_item["description"])
     
     # Prepend image if available (Option 1)
