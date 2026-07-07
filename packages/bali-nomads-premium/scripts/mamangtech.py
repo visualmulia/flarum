@@ -137,7 +137,11 @@ Topik deskripsi singkat:
             {
                 "google_search": {}
             }
-        ]
+        ],
+        "generationConfig": {
+            "maxOutputTokens": 8192,
+            "temperature": 0.7
+        }
     }
     
     req = urllib.request.Request(
