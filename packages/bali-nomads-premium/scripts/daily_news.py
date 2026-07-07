@@ -7,11 +7,16 @@ import urllib.error
 import xml.etree.ElementTree as ET
 
 # Configuration
-RSS_FEED_URL = "https://venturebeat.com/category/ai/feed"
+RSS_FEEDS = [
+    {"name": "VentureBeat AI", "url": "https://venturebeat.com/category/ai/feed"},
+    {"name": "TechCrunch AI", "url": "https://techcrunch.com/category/artificial-intelligence/feed"},
+    {"name": "Google News AI", "url": "https://news.google.com/rss/search?q=artificial+intelligence&hl=en-US&gl=US&ceid=US:en"}
+]
 FLARUM_API_URL = "https://forum.widatama.com/api/discussions"
 FLARUM_API_KEY = os.environ.get("FLARUM_API_KEY", "widatamamasterkey7802546c01e94ebd87fa34b4ed10fe41")
 AIBOY_USER_ID = 7
 TAG_ID = 1  # Pintar AI & Produktivitas
+INCLUDE_ATTRIBUTION = True  # Set to False to remove source attribution completely
 
 # Determine working directory
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
@@ -43,15 +48,15 @@ def save_posted_link(link):
     with open(POSTED_LINKS_FILE, "a") as f:
         f.write(link + "\n")
 
-def fetch_rss_feed():
+def fetch_rss_feed(url):
     req = urllib.request.Request(
-        RSS_FEED_URL, 
+        url, 
         headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
     )
     with urllib.request.urlopen(req) as response:
         return response.read()
 
-def parse_rss(xml_data):
+def parse_rss(xml_data, source_name):
     root = ET.fromstring(xml_data)
     channel = root.find("channel")
     items = []
@@ -95,7 +100,8 @@ def parse_rss(xml_data):
             "title": title,
             "link": link,
             "description": description,
-            "image_url": image_url
+            "image_url": image_url,
+            "source_name": source_name
         })
         
     return items
@@ -199,32 +205,42 @@ def main():
         print("Error: GEMINI_API_KEY not found in environment or .env file.", file=sys.stderr)
         sys.exit(1)
         
-    print("Fetching RSS feed...")
-    try:
-        xml_data = fetch_rss_feed()
-    except Exception as e:
-        print(f"Error fetching RSS feed: {e}", file=sys.stderr)
-        sys.exit(1)
-        
-    items = parse_rss(xml_data)
-    if not items:
-        print("No items found in RSS feed.")
-        sys.exit(0)
-        
+    all_items = []
     posted_links = get_posted_links()
     
-    # Process the first unposted item
+    # Fetch and parse all feeds
+    for feed in RSS_FEEDS:
+        print(f"Fetching {feed['name']} RSS feed...")
+        try:
+            xml_data = fetch_rss_feed(feed["url"])
+            items = parse_rss(xml_data, feed["name"])
+            print(f"Found {len(items)} items in {feed['name']}")
+            all_items.extend(items)
+        except Exception as e:
+            print(f"Warning: Failed to fetch {feed['name']} RSS feed: {e}", file=sys.stderr)
+            
+    if not all_items:
+        print("Error: No items found in any RSS feed.", file=sys.stderr)
+        sys.exit(1)
+        
+    # Find the first unposted item (deduplicated by link)
     target_item = None
-    for item in items:
-        if item["link"] not in posted_links:
+    seen_links = set()
+    for item in all_items:
+        link = item["link"]
+        if link in seen_links:
+            continue
+        seen_links.add(link)
+        
+        if link not in posted_links:
             target_item = item
             break
             
     if not target_item:
-        print("All latest items have already been posted.")
+        print("All latest items from all sources have already been posted.")
         sys.exit(0)
         
-    print(f"Processing new article: {target_item['title']}")
+    print(f"Processing new article from {target_item['source_name']}: {target_item['title']}")
     
     # Rewrite content using Gemini
     rewrite = rewrite_with_gemini(
@@ -247,9 +263,10 @@ def main():
     if target_item["image_url"]:
         post_body = f"![featured_image]({target_item['image_url']})\n\n" + post_body
         
-    # Append attribution
-    post_body += f"\n\n---\n*Sumber asli berita: [VentureBeat]({target_item['link']})*"
-    
+    # Append attribution if enabled (clean plain-text source credit)
+    if INCLUDE_ATTRIBUTION:
+        post_body += f"\n\n---\n*<small>Ditulis ulang untuk komunitas Widatama. Terinspirasi dari liputan {target_item['source_name']}.</small>*"
+        
     # Post to Flarum
     success = post_to_flarum(post_title, post_body, TAG_ID)
     if success:
