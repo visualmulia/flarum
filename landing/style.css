@@ -468,3 +468,60 @@ footer {
   font-size: 0.85rem;
   color: rgba(255,255,255,0.4);
 }
+
+/* Mobile Responsive Overrides */
+@media (max-width: 640px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .nav-links {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  .nav-links .cta-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+  .hero {
+    margin: 2.5rem auto 1.5rem auto;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+  .hero div {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 0.75rem !important;
+  }
+  .hero div a {
+    width: 100%;
+    justify-content: center;
+  }
+  .dashboard-container {
+    padding: 0 1rem;
+    margin-bottom: 3rem;
+  }
+  .sidebar {
+    padding: 1rem;
+  }
+  .content-area {
+    padding: 1rem 0;
+  }
+  .form-group input, .form-group textarea, .form-group select {
+    font-size: 0.9rem;
+  }
+  .footer-cta h2 {
+    font-size: 1.75rem;
+  }
+  .footer-cta p {
+    font-size: 0.95rem;
+  }
+}

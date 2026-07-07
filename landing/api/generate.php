@@ -41,18 +41,18 @@ if ($limitData[$ip]['count'] >= 5) {
 }
 
 // 2. Load API Key
-$apiKey = getenv('GEMINI_API_KEY') ?: '';
+$apiKey = getenv('DEEPSEEK_API_KEY') ?: '';
 if (empty($apiKey)) {
     $configFile = __DIR__ . '/config.php';
     if (file_exists($configFile)) {
         $config = include $configFile;
-        $apiKey = $config['gemini_api_key'] ?? '';
+        $apiKey = $config['deepseek_api_key'] ?? '';
     }
 }
 
 if (empty($apiKey)) {
     http_response_code(500);
-    echo json_encode(['error' => 'API Key belum dikonfigurasi di server. Silakan isi API Key Anda di file landing/api/config.php atau sebagai environment variable GEMINI_API_KEY.']);
+    echo json_encode(['error' => 'API Key belum dikonfigurasi di server. Silakan isi API Key Anda di file landing/api/config.php atau sebagai environment variable DEEPSEEK_API_KEY.']);
     exit;
 }
 
@@ -93,29 +93,34 @@ if ($tool === 'wa_copy') {
     exit;
 }
 
-// 4. Call Google Gemini API
-$url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" . $apiKey;
+// 4. Call DeepSeek API (OpenAI Compatible)
+$url = "https://api.deepseek.com/chat/completions";
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Content-Type: application/json',
+    'Authorization: Bearer ' . $apiKey
+]);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
-    'contents' => [
-        ['parts' => [['text' => $prompt]]]
-    ]
+    'model' => 'deepseek-chat',
+    'messages' => [
+        ['role' => 'user', 'content' => $prompt]
+    ],
+    'stream' => false
 ]));
 $response = curl_exec($ch);
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
 
 if ($httpCode !== 200) {
-    http_response_code($httpCode);
+    http_response_code($httpCode ?: 500);
     echo json_encode(['error' => 'Gagal memanggil API kecerdasan buatan. Silakan periksa apakah API Key Anda valid atau coba beberapa saat lagi.']);
     exit;
 }
 
 $resData = json_decode($response, true);
-$outputText = $resData['candidates'][0]['content']['parts'][0]['text'] ?? 'Tidak ada hasil yang dihasilkan.';
+$outputText = $resData['choices'][0]['message']['content'] ?? 'Tidak ada hasil yang dihasilkan.';
 
 // 5. Increment rate limit count and save
 $limitData[$ip]['count']++;
