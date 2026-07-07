@@ -114,11 +114,13 @@ Panduan Penulisan:
 3. Berikan sub-heading yang menarik, list/bullet points, dan gunakan cetak tebal untuk istilah kunci.
 4. Ajak pembaca untuk berdiskusi/meninggalkan pendapat mereka di akhir postingan.
 
-Format output harus berupa JSON mentah (raw JSON) dengan struktur objek sebagai berikut:
-{{
-  "title": "[Judul postingan yang memikat, klikbait cerdas, maksimal 75 karakter]",
-  "body": "[Isi tulisan artikel forum dalam format Markdown lengkap dengan emoji dan penjelasan mendalam]"
-}}
+Format output harus menggunakan format terstruktur seperti di bawah ini. Pastikan Anda menulis penanda [TITLE] dan [BODY] dengan tepat untuk memisahkan judul dan isi postingan:
+
+[TITLE]
+Judul postingan yang memikat, klikbait cerdas, maksimal 75 karakter.
+
+[BODY]
+Isi tulisan artikel forum dalam format Markdown lengkap dengan emoji dan penjelasan mendalam.
 
 Topik dari Instagram Caption:
 {caption}
@@ -148,11 +150,24 @@ Topik dari Instagram Caption:
             res_data = json.loads(response.read().decode("utf-8"))
             text = res_data['candidates'][0]['content']['parts'][0]['text']
             
-            # Clean JSON codeblock wrappers if returned
-            if text.strip().startswith("```"):
-                text = re.sub(r'^```(?:json)?\n|```$', '', text.strip(), flags=re.MULTILINE)
+            # Parse using delimiters [TITLE] and [BODY]
+            title = ""
+            body = ""
             
-            content = json.loads(text.strip())
+            if "[TITLE]" in text and "[BODY]" in text:
+                parts = text.split("[BODY]")
+                title = parts[0].replace("[TITLE]", "").strip()
+                body = parts[1].strip()
+            else:
+                # Fallback if structure is slightly different
+                lines = text.strip().split("\n")
+                title = lines[0].replace("Title:", "").replace("#", "").strip()
+                body = "\n".join(lines[1:]).strip()
+                
+            content = {
+                "title": title,
+                "body": body
+            }
             
             # Extract grounding metadata (search links) to append as references
             sources = []
@@ -230,7 +245,7 @@ def main():
     print(f"Processing post: {target_item['shortcode']}")
     content, sources = expand_with_gemini(gemini_key, target_item['caption'])
     
-    if not content:
+    if not content or not content['title'] or not content['body']:
         print("Error: Failed to expand content using Gemini.", file=sys.stderr)
         sys.exit(1)
         
