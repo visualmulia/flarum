@@ -268,8 +268,13 @@ def main():
                 post_body += f"- [{title}]({link})\n"
                 seen_links.add(link)
                 
+    # Force truncate title to 80 characters to comply with Flarum's limits
+    title = content['title'].strip()
+    if len(title) > 80:
+        title = title[:77] + "..."
+        
     # Post to Flarum
-    success = post_to_flarum(content['title'], post_body, TAG_ID)
+    success = post_to_flarum(title, post_body, TAG_ID)
     if success:
         save_posted_shortcode(target_item['shortcode'])
         print("Success! mamangtech script finished execution.")
