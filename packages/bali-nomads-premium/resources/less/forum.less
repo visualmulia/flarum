@@ -285,3 +285,120 @@ body {
   }
 }
 
+/* Tags Page Redesign - community.giffgaff.com style */
+.TagsPage {
+  .container {
+    max-width: 1100px;
+  }
+  
+  .TagTiles {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+    gap: 2rem !important;
+    margin: 2rem 0 !important;
+  }
+
+  .TagTile {
+    margin: 0 !important; /* Reset default margins since we use grid gap */
+    background: #fcfbf9 !important; /* Soft Cream/White */
+    color: #191919 !important; /* Dark text */
+    border: 2px solid #191919 !important;
+    border-radius: 16px !important;
+    box-shadow: 4px 4px 0px 0px #191919 !important; /* Neo-brutalism flat shadow */
+    height: 240px !important; /* Fixed height for clean grid alignment */
+    transition: transform 0.2s, box-shadow 0.2s !important;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    
+    &:hover {
+      transform: translate(-2px, -2px) !important;
+      box-shadow: 6px 6px 0px 0px #191919 !important;
+    }
+    
+    &.colored {
+      color: #191919 !important;
+      .TagTile-info {
+        background: #fcfbf9 !important; /* Bypass Flarum colored backgrounds */
+      }
+    }
+  }
+
+  .TagTile-info {
+    padding: 1.5rem !important;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .TagTile-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800 !important;
+    font-size: 18px !important;
+    color: #1e3f20 !important; /* Dark Forest Green Accent */
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    
+    a {
+      color: inherit !important;
+      text-decoration: none !important;
+    }
+
+    i {
+      font-size: 1.1rem;
+      color: #c5a880 !important; /* Warm Gold for icons */
+    }
+  }
+
+  .TagTile-description {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+    color: #5f6862 !important; /* Organic grey-green */
+    opacity: 1 !important;
+    margin: 0 !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  /* Solid Black Bottom Bar containing Latest Post */
+  .TagTile-last {
+    background: #191919 !important; /* Solid Black */
+    color: #fcfbf9 !important; /* Soft White */
+    border-top: 2px solid #191919 !important;
+    padding: 12px 20px !important;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    &::before {
+      content: "LATEST POST | " !important;
+      color: #c5a880 !important; /* Warm Gold */
+      margin-right: 4px;
+    }
+    
+    a {
+      color: #fcfbf9 !important; /* Soft White link */
+      font-weight: 700 !important;
+      text-decoration: none !important;
+      transition: color 0.2s;
+      
+      &:hover {
+        color: #c5a880 !important; /* Gold hover */
+      }
+    }
+  }
+}
+
