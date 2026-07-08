@@ -2,7 +2,7 @@ import app from 'flarum/forum/app';
 import { extend } from 'flarum/common/extend';
 import DiscussionControls from 'flarum/forum/utils/DiscussionControls';
 import Button from 'flarum/common/components/Button';
-import UserSettingsPage from 'flarum/forum/components/UserSettingsPage';
+import SettingsPage from 'flarum/forum/components/SettingsPage';
 import FieldSet from 'flarum/common/components/FieldSet';
 import Select from 'flarum/common/components/Select';
 import CookForSocialsModal from './components/CookForSocialsModal';
@@ -23,7 +23,7 @@ app.initializers.add('visualmulia-bali-nomads-premium', () => {
   });
 
   // 2. Self-Selected Specialization Badge for Members
-  extend(UserSettingsPage.prototype, 'oninit', function() {
+  extend(SettingsPage.prototype, 'oninit', function() {
     this.selectedRole = '';
     app.request({
       method: 'GET',
@@ -36,7 +36,7 @@ app.initializers.add('visualmulia-bali-nomads-premium', () => {
     });
   });
 
-  extend(UserSettingsPage.prototype, 'settingsItems', function(items) {
+  extend(SettingsPage.prototype, 'settingsItems', function(items) {
     items.add('select-specialization', (
       <FieldSet className="Settings-specialization" label="Pilih Spesialisasi Peran Anda" style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
         <div className="helpText" style="margin-bottom: 0.75rem; font-size: 0.9rem; color: #5f6862; font-weight: 500;">
@@ -59,7 +59,7 @@ app.initializers.add('visualmulia-bali-nomads-premium', () => {
     ), 50); // High priority order placement
   });
 
-  UserSettingsPage.prototype.saveRole = function(value) {
+  SettingsPage.prototype.saveRole = function(value) {
     app.alerts.dismiss(this.roleAlert);
     app.request({
       method: 'POST',
