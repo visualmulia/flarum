@@ -21,24 +21,24 @@ body {
 
 // Sleek discussion list rows (Giffgaff card style)
 .DiscussionListItem {
-  background: #fcfbf9 !important; /* Soft White */
+  background: #ffffff !important;
   border: 2px solid #191919 !important; /* Thick Solid Black Border */
-  border-radius: 16px !important;
+  border-radius: 4px !important; /* Slight Rounded Corners */
   margin-bottom: 12px !important;
   padding: 16px 20px !important;
-  transition: transform 0.2s, box-shadow 0.2s !important;
+  transition: background-color 0.2s !important;
   position: relative;
   z-index: 1;
-  box-shadow: 3px 3px 0px 0px #191919 !important; /* Flat Offset Shadow */
+  box-shadow: none !important; /* No Shadow */
 
   &:hover,
   &:focus-within,
   &:has(.Dropdown.open),
   &:has(.open) {
     border-color: #191919 !important;
-    transform: translate(-1px, -1px) !important;
+    transform: none !important;
     background: #fcfbf9 !important;
-    box-shadow: 4px 4px 0px 0px #191919 !important;
+    box-shadow: none !important;
     z-index: 15 !important;
   }
 }
@@ -303,27 +303,28 @@ body {
 
   .TagTile {
     margin: 0 !important; /* Reset default margins since we use grid gap */
-    background: #fcfbf9 !important; /* Soft Cream/White */
+    background: #ffffff !important;
     color: #191919 !important; /* Dark text */
     border: 2px solid #191919 !important;
-    border-radius: 16px !important;
-    box-shadow: 4px 4px 0px 0px #191919 !important; /* Neo-brutalism flat shadow */
+    border-radius: 4px !important; /* Slight Rounded Corners */
+    box-shadow: none !important; /* No Shadow */
     height: 240px !important; /* Fixed height for clean grid alignment */
-    transition: transform 0.2s, box-shadow 0.2s !important;
+    transition: background-color 0.2s !important;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     position: relative;
     
     &:hover {
-      transform: translate(-2px, -2px) !important;
-      box-shadow: 6px 6px 0px 0px #191919 !important;
+      transform: none !important;
+      box-shadow: none !important;
+      background: #fcfbf9 !important;
     }
     
     &.colored {
       color: #191919 !important;
       .TagTile-info {
-        background: #fcfbf9 !important; /* Bypass Flarum colored backgrounds */
+        background: #ffffff !important; /* Bypass Flarum colored backgrounds */
       }
     }
   }
@@ -493,8 +494,8 @@ body {
 
 /* Start a Discussion Button - Pill shape, flat offset shadow */
 .IndexPage-newDiscussion, .Button--primary.IndexPage-newDiscussion, .App-primaryControl, .Button.IndexPage-newDiscussion {
-  background-color: #1e3f20 !important; /* Forest Green from Canva Mockup */
-  color: #fcfbf9 !important; /* Soft White Text */
+  background-color: #ffd300 !important; /* Giffgaff Yellow */
+  color: #191919 !important; /* Black Text */
   border: 2px solid #191919 !important;
   border-radius: 9999px !important; /* Pill shape */
   font-weight: 800 !important;
@@ -507,8 +508,8 @@ body {
   box-shadow: 2px 2px 0px 0px #191919 !important;
   
   &:hover, &:focus {
-    background-color: #1e3f20 !important;
-    color: #fcfbf9 !important;
+    background-color: #ffd300 !important;
+    color: #191919 !important;
     transform: translate(-0.5px, -0.5px) !important;
     box-shadow: 2.5px 2.5px 0px 0px #191919 !important;
   }
@@ -527,6 +528,7 @@ body {
     box-shadow: 3px 3px 0px 0px #191919 !important;
     
     &:hover, &:focus {
+      background-color: #ffd300 !important;
       transform: translate(-1px, -1px) !important;
       box-shadow: 4px 4px 0px 0px #191919 !important;
     }
