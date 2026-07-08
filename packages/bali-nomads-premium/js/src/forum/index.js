@@ -7,6 +7,9 @@ import Select from 'flarum/common/components/Select';
 import CookForSocialsModal from './components/CookForSocialsModal';
 
 app.initializers.add('visualmulia-bali-nomads-premium', () => {
+  // Translate "Start a Discussion" button to "Mulai Diskusi" dynamically
+  app.translator.translations['core.forum.index.start_discussion_button'] = 'Mulai Diskusi';
+
   // Retrieve Flarum core components from app.components
   const SettingsPage = app.components.SettingsPage;
   const WelcomeHero = app.components.WelcomeHero;
@@ -98,8 +101,8 @@ app.initializers.add('visualmulia-bali-nomads-premium', () => {
               onclick={() => this.hide()}
             />
             <div className="containerNarrow Hero-content">
-              <h1 className="Hero-title">Yuk, Cari Tahu Seputar AI & Produktivitas!</h1>
-              <p className="Hero-subtitle">Cari jawaban, tutorial, atau diskusikan ide SaaS Anda bersama ribuan builders lainnya.</p>
+              <h1 className="Hero-title">Selamat Datang di Widatama Bootcamp</h1>
+              <p className="Hero-subtitle">Wadah Inovasi Digital Anak Muda</p>
               <div className="Hero-search-wrapper">
                 <GlobalSearch state={app.search.state} />
               </div>

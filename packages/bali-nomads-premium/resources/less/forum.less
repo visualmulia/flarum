@@ -1,6 +1,6 @@
 // Corporate-premium light design system variables
-@body-bg: #f8fafc;
-@control-bg: #ffffff;
+@body-bg: #f6f4f0;
+@control-bg: #fcfbf9;
 @primary-color: #4f46e5; // sleek indigo
 @secondary-color: #7c3aed;
 @muted-color: #64748b;
@@ -13,7 +13,7 @@
 
 body {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: @body-bg;
+  background-color: #f6f4f0 !important;
   color: @text-color;
   font-size: 15px !important;
   line-height: 1.6;
@@ -106,8 +106,8 @@ body {
 
 /* Premium Welcome Hero - community.giffgaff.com Style */
 .WelcomeHero.GiffgaffHero {
-  background-color: #1e3f20 !important; /* Forest Green */
-  color: #fcfbf9 !important; /* Soft White */
+  background-color: #eb5f8e !important; /* Bold Magenta */
+  color: #191919 !important; /* Bold Black Text */
   text-align: center;
   padding: 5rem 1.5rem !important;
   border-bottom: 2px solid #191919;
@@ -116,7 +116,7 @@ body {
   z-index: 10;
   
   .Hero-close {
-    color: rgba(252, 251, 249, 0.6) !important;
+    color: rgba(25, 25, 25, 0.6) !important;
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
@@ -126,7 +126,7 @@ body {
     padding: 0 !important;
     box-shadow: none !important;
     &:hover {
-      color: #fcfbf9 !important;
+      color: #191919 !important;
     }
   }
 
@@ -143,7 +143,7 @@ body {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 3rem;
     font-weight: 900;
-    color: #fcfbf9 !important;
+    color: #191919 !important;
     margin: 0 !important;
     line-height: 1.2;
     text-shadow: none;
@@ -153,7 +153,7 @@ body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.15rem;
     font-weight: 500;
-    color: rgba(252, 251, 249, 0.8) !important;
+    color: rgba(25, 25, 25, 0.8) !important;
     margin: 0 0 1.5rem 0 !important;
     line-height: 1.5;
   }
@@ -189,7 +189,7 @@ body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 600;
       color: #191919 !important;
-      background-color: #fcfbf9 !important;
+      background-color: #f6f4f0 !important; /* Framed input elements use f6f4f0 */
       border: 2px solid #191919 !important;
       border-radius: 9999px !important; /* Fully Rounded */
       box-shadow: 4px 4px 0px 0px #191919 !important; /* Neo-brutalism flat shadow */
@@ -493,8 +493,8 @@ body {
 
 /* Start a Discussion Button - Pill shape, flat offset shadow */
 .IndexPage-newDiscussion, .Button--primary.IndexPage-newDiscussion, .App-primaryControl, .Button.IndexPage-newDiscussion {
-  background-color: #c5a880 !important; /* Warm Gold */
-  color: #191919 !important;
+  background-color: #1e3f20 !important; /* Forest Green from Canva Mockup */
+  color: #fcfbf9 !important; /* Soft White Text */
   border: 2px solid #191919 !important;
   border-radius: 9999px !important; /* Pill shape */
   font-weight: 800 !important;
@@ -507,8 +507,8 @@ body {
   box-shadow: 2px 2px 0px 0px #191919 !important;
   
   &:hover, &:focus {
-    background-color: #c5a880 !important;
-    color: #191919 !important;
+    background-color: #1e3f20 !important;
+    color: #fcfbf9 !important;
     transform: translate(-0.5px, -0.5px) !important;
     box-shadow: 2.5px 2.5px 0px 0px #191919 !important;
   }
@@ -541,7 +541,8 @@ body {
 /* Tag Pages Hero Banner Overrides */
 .Hero {
   text-shadow: none !important;
-  color: #fcfbf9 !important;
+  color: #191919 !important;
+  background-color: #eb5f8e !important; /* Bold Magenta */
   border-bottom: 2px solid #191919 !important;
   padding: 4rem 1.5rem !important;
   
@@ -549,14 +550,14 @@ body {
     font-family: 'Playfair Display', Georgia, serif !important;
     font-weight: 900 !important;
     font-size: 2.8rem !important;
-    color: #fcfbf9 !important;
+    color: #191919 !important;
   }
   
   .Hero-subtitle {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
     font-size: 1.1rem !important;
     font-weight: 500 !important;
-    color: rgba(252, 251, 249, 0.8) !important;
+    color: rgba(25, 25, 25, 0.8) !important;
     opacity: 1 !important;
     margin-top: 0.5rem !important;
   }
