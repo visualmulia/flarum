@@ -12,30 +12,33 @@
 @header-text-color: #0f172a;
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background-color: @body-bg;
   color: @text-color;
+  font-size: 15px !important;
+  line-height: 1.6;
 }
 
-// Sleek discussion list rows
+// Sleek discussion list rows (Giffgaff card style)
 .DiscussionListItem {
-  background: #ffffff;
-  border: 1px solid @border-color;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  padding: 14px 20px;
-  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  background: #fcfbf9 !important; /* Soft White */
+  border: 2px solid #191919 !important; /* Thick Solid Black Border */
+  border-radius: 16px !important;
+  margin-bottom: 12px !important;
+  padding: 16px 20px !important;
+  transition: transform 0.2s, box-shadow 0.2s !important;
   position: relative;
   z-index: 1;
+  box-shadow: 3px 3px 0px 0px #191919 !important; /* Flat Offset Shadow */
 
   &:hover,
   &:focus-within,
   &:has(.Dropdown.open),
   &:has(.open) {
-    border-color: rgba(79, 70, 229, 0.4);
-    transform: translateY(-1px);
-    background: #f8fafc;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    border-color: #191919 !important;
+    transform: translate(-1px, -1px) !important;
+    background: #fcfbf9 !important;
+    box-shadow: 4px 4px 0px 0px #191919 !important;
     z-index: 15 !important;
   }
 }
@@ -401,4 +404,141 @@ body {
     }
   }
 }
+
+/* Global Navigation & Sidebar Styles */
+.App-navigation {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  
+  .Dropdown-toggle {
+    border: 2px solid #191919 !important;
+    border-radius: 9999px !important;
+    box-shadow: 3px 3px 0px 0px #191919 !important;
+    font-weight: 800 !important;
+    padding: 8px 16px !important;
+    background: #fcfbf9 !important;
+    color: #191919 !important;
+  }
+}
+
+.Navigation {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  
+  a {
+    color: #5f6862 !important;
+    padding: 10px 15px !important;
+    border-radius: 8px !important;
+    transition: all 0.2s !important;
+    
+    &:hover, &.active {
+      background-color: #f6f4f0 !important;
+      color: #1e3f20 !important;
+    }
+  }
+}
+
+/* Discussion Title & Meta Info Overrides */
+.DiscussionListItem-title {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 17px !important;
+  font-weight: 800 !important;
+  color: #191919 !important;
+  line-height: 1.4 !important;
+  text-decoration: none !important;
+  
+  &:hover {
+    color: #1e3f20 !important;
+  }
+}
+
+.DiscussionListItem-info {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 12.5px !important;
+  color: #5f6862 !important;
+  margin-top: 6px !important;
+  
+  li {
+    font-weight: 600 !important;
+  }
+  
+  a {
+    color: inherit !important;
+    font-weight: 700 !important;
+    
+    &:hover {
+      color: #1e3f20 !important;
+    }
+  }
+}
+
+/* Discussion Page Post Body Font Size */
+.Post-body {
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  color: #191919 !important;
+  
+  p, li {
+    font-size: 15px !important;
+  }
+  
+  h2, h3, h4 {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-weight: 800 !important;
+    color: #1e3f20 !important;
+  }
+}
+
+/* Start a Discussion Button - Pill shape, flat offset shadow */
+.IndexPage-newDiscussion, .Button--primary.IndexPage-newDiscussion, .App-primaryControl, .Button.IndexPage-newDiscussion {
+  background-color: #c5a880 !important; /* Warm Gold */
+  color: #191919 !important;
+  border: 2px solid #191919 !important;
+  border-radius: 9999px !important; /* Pill shape */
+  box-shadow: 3px 3px 0px 0px #191919 !important;
+  font-weight: 800 !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  padding: 10px 24px !important;
+  font-size: 14px !important;
+  transition: transform 0.2s, box-shadow 0.2s !important;
+  
+  &:hover, &:focus {
+    background-color: #c5a880 !important;
+    color: #191919 !important;
+    transform: translate(-1px, -1px) !important;
+    box-shadow: 4px 4px 0px 0px #191919 !important;
+  }
+  
+  &:active {
+    transform: translate(1px, 1px) !important;
+    box-shadow: 1px 1px 0px 0px #191919 !important;
+  }
+}
+
+/* Tag Pages Hero Banner Overrides */
+.Hero {
+  text-shadow: none !important;
+  color: #fcfbf9 !important;
+  border-bottom: 2px solid #191919 !important;
+  padding: 4rem 1.5rem !important;
+  
+  .Hero-title {
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-weight: 900 !important;
+    font-size: 2.8rem !important;
+    color: #fcfbf9 !important;
+  }
+  
+  .Hero-subtitle {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+    color: rgba(252, 251, 249, 0.8) !important;
+    opacity: 1 !important;
+    margin-top: 0.5rem !important;
+  }
+}
+
 
