@@ -107,6 +107,7 @@ def parse_rss(xml_data, source_name):
     return items
 
 def rewrite_with_gemini(gemini_key, orig_title, orig_desc, orig_link):
+    import time
     url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={gemini_key}"
     
     prompt = f"""
@@ -141,19 +142,28 @@ Deskripsi Singkat: {orig_desc}
         headers={"Content-Type": "application/json"}
     )
     
-    try:
-        with urllib.request.urlopen(req) as response:
-            res_data = json.loads(response.read().decode("utf-8"))
-            text = res_data['candidates'][0]['content']['parts'][0]['text']
-            
-            # Strip markdown block quotes if present
-            if text.strip().startswith("```"):
-                text = re.sub(r'^```(?:json)?\n|```$', '', text.strip(), flags=re.MULTILINE)
+    max_retries = 3
+    retry_delay = 5
+    
+    for attempt in range(1, max_retries + 1):
+        try:
+            with urllib.request.urlopen(req) as response:
+                res_data = json.loads(response.read().decode("utf-8"))
+                text = res_data['candidates'][0]['content']['parts'][0]['text']
                 
-            return json.loads(text.strip())
-    except Exception as e:
-        print(f"Error calling Gemini API: {e}", file=sys.stderr)
-        return None
+                # Strip markdown block quotes if present
+                if text.strip().startswith("```"):
+                    text = re.sub(r'^```(?:json)?\n|```$', '', text.strip(), flags=re.MULTILINE)
+                    
+                return json.loads(text.strip())
+        except Exception as e:
+            print(f"Attempt {attempt}/{max_retries} failed to call Gemini API: {e}", file=sys.stderr)
+            if attempt < max_retries:
+                print(f"Waiting {retry_delay} seconds before retrying...", file=sys.stderr)
+                time.sleep(retry_delay)
+            else:
+                print("All retry attempts failed.", file=sys.stderr)
+                return None
 
 def post_to_flarum(title, body, tag_id):
     payload = {

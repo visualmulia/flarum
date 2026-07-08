@@ -150,46 +150,56 @@ Topik deskripsi singkat:
         headers={"Content-Type": "application/json"}
     )
     
-    try:
-        with urllib.request.urlopen(req) as response:
-            res_data = json.loads(response.read().decode("utf-8"))
-            text = res_data['candidates'][0]['content']['parts'][0]['text']
-            
-            # Parse using delimiters [TITLE] and [BODY]
-            title = ""
-            body = ""
-            
-            if "[TITLE]" in text and "[BODY]" in text:
-                parts = text.split("[BODY]")
-                title = parts[0].replace("[TITLE]", "").strip()
-                body = parts[1].strip()
+    import time
+    max_retries = 3
+    retry_delay = 5
+    
+    for attempt in range(1, max_retries + 1):
+        try:
+            with urllib.request.urlopen(req) as response:
+                res_data = json.loads(response.read().decode("utf-8"))
+                text = res_data['candidates'][0]['content']['parts'][0]['text']
+                
+                # Parse using delimiters [TITLE] and [BODY]
+                title = ""
+                body = ""
+                
+                if "[TITLE]" in text and "[BODY]" in text:
+                    parts = text.split("[BODY]")
+                    title = parts[0].replace("[TITLE]", "").strip()
+                    body = parts[1].strip()
+                else:
+                    # Fallback if structure is slightly different
+                    lines = text.strip().split("\n")
+                    title = lines[0].replace("Title:", "").replace("#", "").strip()
+                    body = "\n".join(lines[1:]).strip()
+                    
+                content = {
+                    "title": title,
+                    "body": body
+                }
+                
+                # Extract grounding metadata (search links) to append as references
+                sources = []
+                try:
+                    metadata = res_data['candidates'][0].get('groundingMetadata', {})
+                    chunks = metadata.get('groundingChunks', [])
+                    for chunk in chunks:
+                        web = chunk.get('web', {})
+                        if web.get('uri') and web.get('title'):
+                            sources.append((web['title'], web['uri']))
+                except Exception as ex:
+                    print(f"Error parsing grounding metadata: {ex}")
+                    
+                return content, sources
+        except Exception as e:
+            print(f"Attempt {attempt}/{max_retries} failed to call Gemini API: {e}", file=sys.stderr)
+            if attempt < max_retries:
+                print(f"Waiting {retry_delay} seconds before retrying...", file=sys.stderr)
+                time.sleep(retry_delay)
             else:
-                # Fallback if structure is slightly different
-                lines = text.strip().split("\n")
-                title = lines[0].replace("Title:", "").replace("#", "").strip()
-                body = "\n".join(lines[1:]).strip()
-                
-            content = {
-                "title": title,
-                "body": body
-            }
-            
-            # Extract grounding metadata (search links) to append as references
-            sources = []
-            try:
-                metadata = res_data['candidates'][0].get('groundingMetadata', {})
-                chunks = metadata.get('groundingChunks', [])
-                for chunk in chunks:
-                    web = chunk.get('web', {})
-                    if web.get('uri') and web.get('title'):
-                        sources.append((web['title'], web['uri']))
-            except Exception as ex:
-                print(f"Error parsing grounding metadata: {ex}")
-                
-            return content, sources
-    except Exception as e:
-        print(f"Error calling Gemini API: {e}", file=sys.stderr)
-        return None, []
+                print("All retry attempts failed.", file=sys.stderr)
+                return None, []
 
 def post_to_flarum(title, body, tag_id):
     payload = {
