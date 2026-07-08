@@ -1,10 +1,12 @@
 import app from 'flarum/forum/app';
-import { extend } from 'flarum/common/extend';
+import { extend, override } from 'flarum/common/extend';
 import DiscussionControls from 'flarum/forum/utils/DiscussionControls';
 import Button from 'flarum/common/components/Button';
 import SettingsPage from 'flarum/forum/components/SettingsPage';
 import FieldSet from 'flarum/common/components/FieldSet';
 import Select from 'flarum/common/components/Select';
+import WelcomeHero from 'flarum/forum/components/WelcomeHero';
+import GlobalSearch from 'flarum/forum/components/GlobalSearch';
 import CookForSocialsModal from './components/CookForSocialsModal';
 
 app.initializers.add('visualmulia-bali-nomads-premium', () => {
@@ -77,4 +79,28 @@ app.initializers.add('visualmulia-bali-nomads-premium', () => {
       app.alerts.show(this.roleAlert = { type: 'error' }, 'Gagal memperbarui peran.');
     });
   };
+
+  // 3. Overhaul WelcomeHero to clean Giffgaff style with centered Big Search component
+  override(WelcomeHero.prototype, 'view', function(original) {
+    if (this.hidden) return null;
+
+    return (
+      <header className="Hero WelcomeHero GiffgaffHero">
+        <div className="container">
+          <Button
+            icon="fas fa-times"
+            className="Hero-close Button Button--link"
+            onclick={() => this.hide()}
+          />
+          <div className="containerNarrow Hero-content">
+            <h1 className="Hero-title">Yuk, Cari Tahu Seputar AI & Produktivitas!</h1>
+            <p className="Hero-subtitle">Cari jawaban, tutorial, atau diskusikan ide SaaS Anda bersama ribuan builders lainnya.</p>
+            <div className="Hero-search-wrapper">
+              <GlobalSearch state={app.search.state} />
+            </div>
+          </div>
+        </div>
+      </header>
+    );
+  });
 });

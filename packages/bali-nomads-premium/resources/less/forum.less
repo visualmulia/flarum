@@ -101,3 +101,187 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
 }
 
+/* Premium Welcome Hero - community.giffgaff.com Style */
+.WelcomeHero.GiffgaffHero {
+  background-color: #1e3f20 !important; /* Forest Green */
+  color: #fcfbf9 !important; /* Soft White */
+  text-align: center;
+  padding: 5rem 1.5rem !important;
+  border-bottom: 2px solid #191919;
+  position: relative;
+  overflow: visible; /* Let search dropdowns display over card */
+  z-index: 10;
+  
+  .Hero-close {
+    color: rgba(252, 251, 249, 0.6) !important;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 1.1rem;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    &:hover {
+      color: #fcfbf9 !important;
+    }
+  }
+
+  .Hero-content {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .Hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #fcfbf9 !important;
+    margin: 0 !important;
+    line-height: 1.2;
+    text-shadow: none;
+  }
+
+  .Hero-subtitle {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: rgba(252, 251, 249, 0.8) !important;
+    margin: 0 0 1.5rem 0 !important;
+    line-height: 1.5;
+  }
+
+  /* Giant Search Bar styles */
+  .Hero-search-wrapper {
+    width: 100%;
+    max-width: 580px;
+    position: relative;
+    
+    .GlobalSearch {
+      width: 100%;
+      position: static;
+    }
+
+    .Search {
+      width: 100%;
+      position: relative;
+    }
+
+    .Search-input {
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .FormControl {
+      width: 100%;
+      height: 54px !important;
+      padding: 0 1.5rem 0 3.2rem !important;
+      font-size: 1.05rem !important;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      color: #191919 !important;
+      background-color: #fcfbf9 !important;
+      border: 2px solid #191919 !important;
+      border-radius: 9999px !important; /* Fully Rounded */
+      box-shadow: 4px 4px 0px 0px #191919 !important; /* Neo-brutalism flat shadow */
+      outline: none !important;
+      transition: transform 0.2s, box-shadow 0.2s;
+      
+      &:focus {
+        transform: translate(-1px, -1px);
+        box-shadow: 5px 5px 0px 0px #191919 !important;
+      }
+    }
+
+    /* Icon adjustments inside input */
+    .Search-input::before {
+      content: "\f002"; /* FontAwesome Search Icon */
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #7a7a7a;
+      font-size: 1.1rem;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* Hide standard Flarum input background icon */
+    .Search.active .Search-input::before {
+      display: block !important;
+    }
+
+    /* Style the search suggestions list */
+    .Search-results {
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 0;
+      right: 0;
+      background: #fcfbf9 !important;
+      border: 2px solid #191919 !important;
+      border-radius: 16px !important;
+      box-shadow: 6px 6px 0px 0px #191919 !important;
+      padding: 0.75rem !important;
+      text-align: left;
+      z-index: 1000 !important;
+      
+      li {
+        border-radius: 8px;
+        margin-bottom: 2px;
+        
+        a {
+          padding: 10px 15px !important;
+          color: #191919 !important;
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-weight: 600;
+          
+          &:hover, &:focus {
+            background-color: #f6f4f0 !important;
+            color: #1e3f20 !important;
+          }
+        }
+      }
+      
+      .Dropdown-header {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 800;
+        font-size: 0.8rem;
+        color: #7a7a7a !important;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 8px 15px !important;
+      }
+    }
+  }
+}
+
+/* Mobile Responsiveness for GiffgaffHero */
+@media (max-width: 768px) {
+  .WelcomeHero.GiffgaffHero {
+    padding: 3rem 1.25rem !important;
+    
+    .Hero-title {
+      font-size: 2rem !important;
+    }
+    
+    .Hero-subtitle {
+      font-size: 0.95rem !important;
+      margin-bottom: 1rem !important;
+    }
+
+    .Hero-search-wrapper .FormControl {
+      height: 48px !important;
+      font-size: 0.95rem !important;
+      padding: 0 1.25rem 0 2.8rem !important;
+    }
+  }
+}
+
