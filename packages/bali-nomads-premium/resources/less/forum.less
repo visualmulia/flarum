@@ -108,8 +108,8 @@ body {
 .WelcomeHero.GiffgaffHero {
   background-color: #eb5f8e !important; /* Bold Magenta */
   color: #191919 !important; /* Bold Black Text */
-  text-align: center;
-  padding: 5rem 1.5rem !important;
+  text-align: left; /* Align Left */
+  padding: 3rem 1.5rem !important; /* Narrower Banner Padding */
   border-bottom: 2px solid #191919;
   position: relative;
   overflow: visible; /* Let search dropdowns display over card */
@@ -132,16 +132,16 @@ body {
 
   .Hero-content {
     max-width: 720px;
-    margin: 0 auto;
+    margin: 0 !important; /* Left aligned content */
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start; /* Left aligned children */
     gap: 1rem;
   }
 
   .Hero-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 3rem;
+    font-family: 'Plus Jakarta Sans', sans-serif; /* Sans Serif */
+    font-size: 2.6rem; /* Optimized Title size */
     font-weight: 900;
     color: #191919 !important;
     margin: 0 !important;
@@ -151,7 +151,7 @@ body {
 
   .Hero-subtitle {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.15rem;
+    font-size: 1.1rem; /* Optimized Subtitle size */
     font-weight: 500;
     color: rgba(25, 25, 25, 0.8) !important;
     margin: 0 0 1.5rem 0 !important;
@@ -546,20 +546,27 @@ body {
   color: #191919 !important;
   background-color: #eb5f8e !important; /* Bold Magenta */
   border-bottom: 2px solid #191919 !important;
-  padding: 4rem 1.5rem !important;
+  padding: 2.2rem 1.5rem !important; /* Narrower Banner Height */
+  text-align: left !important; /* Left Aligned */
   
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important; /* Align left */
+  }
+
   .Hero-title {
-    font-family: 'Playfair Display', Georgia, serif !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important; /* Sans Serif */
     font-weight: 900 !important;
-    font-size: 2.8rem !important;
+    font-size: 2.4rem !important; /* Larger Thread Title */
     color: #191919 !important;
   }
   
   .Hero-subtitle {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
-    font-size: 1.1rem !important;
+    font-size: 1rem !important; /* Smaller sub-forum title */
     font-weight: 500 !important;
-    color: rgba(25, 25, 25, 0.8) !important;
+    color: rgba(25, 25, 25, 0.7) !important;
     opacity: 1 !important;
     margin-top: 0.5rem !important;
   }
