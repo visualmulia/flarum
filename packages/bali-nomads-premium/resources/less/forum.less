@@ -441,14 +441,17 @@ body {
       color: #1e3f20 !important;
     }
   }
+}
 
-  /* Hide Rankings item from navigation completely */
-  .item-rankings, 
-  .item-fof-gamification-rankings, 
-  a[href*="/rankings"], 
-  a[href*="/ranking"] {
-    display: none !important;
-  }
+/* Global Hide Rankings navigation item completely */
+.item-rankings, 
+.item-fof-gamification-rankings, 
+.item-ranking,
+a[href*="/rankings"], 
+a[href*="/ranking"],
+.SideNav .item-rankings,
+.SideNav .item-fof-gamification-rankings {
+  display: none !important;
 }
 
 /* Discussion Title & Meta Info Overrides */
@@ -510,24 +513,24 @@ body {
   border-radius: 9999px !important; /* Pill shape */
   font-weight: 800 !important;
   font-family: 'Plus Jakarta Sans', sans-serif !important;
-  transition: transform 0.2s, box-shadow 0.2s !important;
-  margin: 4px !important; /* Prevent shadow clipping */
+  transition: transform 0.2s, background-color 0.2s !important;
+  margin: 4px !important;
+  box-shadow: none !important; /* Single Frame - No stacked shadow */
   
   /* Mobile compact styles */
   padding: 6px 12px !important;
   font-size: 13px !important;
-  box-shadow: 2px 2px 0px 0px #191919 !important;
   
   &:hover, &:focus {
     background-color: #ffd300 !important;
     color: #191919 !important;
-    transform: translate(-0.5px, -0.5px) !important;
-    box-shadow: 2.5px 2.5px 0px 0px #191919 !important;
+    transform: translateY(-2px) !important; /* Move slightly up on hover */
+    box-shadow: none !important;
   }
   
   &:active {
-    transform: translate(0.5px, 0.5px) !important;
-    box-shadow: 1px 1px 0px 0px #191919 !important;
+    transform: translateY(1px) !important;
+    box-shadow: none !important;
   }
 }
 
@@ -541,17 +544,17 @@ body {
   .IndexPage-newDiscussion, .Button--primary.IndexPage-newDiscussion, .App-primaryControl, .Button.IndexPage-newDiscussion {
     padding: 10px 24px !important;
     font-size: 14px !important;
-    box-shadow: 3px 3px 0px 0px #191919 !important;
+    box-shadow: none !important;
     
     &:hover, &:focus {
       background-color: #ffd300 !important;
-      transform: translate(-1px, -1px) !important;
-      box-shadow: 4px 4px 0px 0px #191919 !important;
+      transform: translateY(-2px) !important;
+      box-shadow: none !important;
     }
     
     &:active {
-      transform: translate(1px, 1px) !important;
-      box-shadow: 1px 1px 0px 0px #191919 !important;
+      transform: translateY(1px) !important;
+      box-shadow: none !important;
     }
   }
 }
