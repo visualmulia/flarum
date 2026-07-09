@@ -111,16 +111,21 @@ body {
   background-color: #eb5f8e !important; /* Bold Magenta */
   color: #191919 !important; /* Bold Black Text */
   text-align: left; /* Align Left */
-  padding: 3rem 1.5rem !important; /* Narrower Banner Padding */
+  padding: 1.2rem 1.5rem !important; /* Ultra Narrow Banner Padding */
   border-bottom: 2px solid #191919;
   position: relative;
   overflow: visible; /* Let search dropdowns display over card */
   z-index: 10;
   
+  .containerNarrow {
+    max-width: 100% !important; /* Prevent text wrapping on two lines */
+    width: 100% !important;
+  }
+  
   .Hero-close {
     color: rgba(25, 25, 25, 0.6) !important;
     position: absolute;
-    top: 1.5rem;
+    top: 1.2rem;
     right: 1.5rem;
     font-size: 1.1rem;
     background: transparent !important;
@@ -133,30 +138,34 @@ body {
   }
 
   .Hero-content {
-    max-width: 720px;
+    max-width: 100%;
     margin: 0 !important; /* Left aligned content */
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Left aligned children */
-    gap: 1rem;
+    gap: 0.5rem;
   }
 
   .Hero-title {
     font-family: 'Plus Jakarta Sans', sans-serif; /* Sans Serif */
-    font-size: 2.6rem; /* Optimized Title size */
+    font-size: 2.2rem; /* Sleek single-line Title size */
     font-weight: 900;
     color: #191919 !important;
     margin: 0 !important;
     line-height: 1.2;
     text-shadow: none;
+    
+    @media (min-width: 768px) {
+      white-space: nowrap !important; /* Single line on desktop */
+    }
   }
 
   .Hero-subtitle {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.1rem; /* Optimized Subtitle size */
+    font-size: 1rem; /* Optimized Subtitle size */
     font-weight: 500;
     color: rgba(25, 25, 25, 0.8) !important;
-    margin: 0 0 1.5rem 0 !important;
+    margin: 0 0 1rem 0 !important;
     line-height: 1.5;
   }
 
@@ -541,7 +550,8 @@ a[href*="/ranking"],
   border: none !important;
   box-shadow: none !important;
   padding: 0 !important;
-  margin: 0 !important;
+  margin: 0 24px 0 0 !important; /* Comfort right spacing to prevent text link overlap */
+  display: inline-block !important; /* Respect margins and flow horizontally */
 }
 
 /* Desktop styles */
@@ -570,7 +580,7 @@ a[href*="/ranking"],
   color: #191919 !important;
   background-color: #eb5f8e !important; /* Bold Magenta */
   border-bottom: 2px solid #191919 !important;
-  padding: 1.1rem 1.5rem !important; /* Narrower Banner Height (Half thickness) */
+  padding: 0.8rem 1.5rem !important; /* Sleek ultra-narrow banner height */
   text-align: left !important; /* Left Aligned */
   
   .container {
@@ -579,22 +589,31 @@ a[href*="/ranking"],
     align-items: flex-start !important; /* Align left */
   }
 
+  .containerNarrow {
+    max-width: 100% !important; /* Stretch container to prevent wrapping */
+    width: 100% !important;
+  }
+
   .Hero-title, .DiscussionHero-title {
     font-family: 'Plus Jakarta Sans', sans-serif !important; /* Sans Serif */
     font-weight: 800 !important; /* BOLD Title */
-    font-size: 2.2rem !important; /* Bold thread/post title */
+    font-size: 1.8rem !important; /* Sleek thread/post title size */
     color: #191919 !important;
     margin: 0 !important;
     line-height: 1.3 !important;
+    
+    @media (min-width: 768px) {
+      white-space: nowrap !important; /* Strictly one single line on desktop */
+    }
   }
   
   .Hero-subtitle, .DiscussionHero-subtitle {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
-    font-size: 1rem !important; /* Smaller sub-forum title */
+    font-size: 0.95rem !important; /* Smaller sub-forum title */
     font-weight: 500 !important;
     color: rgba(25, 25, 25, 0.7) !important;
     opacity: 1 !important;
-    margin-top: 0.25rem !important;
+    margin-top: 0.2rem !important;
   }
 
   /* Style Category Tag Badges inside the Magenta Banner (No solid black overlay) */
