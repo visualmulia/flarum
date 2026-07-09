@@ -574,8 +574,8 @@ a[href*="/ranking"],
   }
 }
 
-/* Tag Pages & Discussion Page Hero Banner Overrides */
-.Hero, .DiscussionHero {
+/* Tag Pages Hero Banner Overrides (Magenta) */
+.Hero {
   text-shadow: none !important;
   color: #191919 !important;
   background-color: #eb5f8e !important; /* Bold Magenta */
@@ -594,7 +594,7 @@ a[href*="/ranking"],
     width: 100% !important;
   }
 
-  .Hero-title, .DiscussionHero-title {
+  .Hero-title {
     font-family: 'Plus Jakarta Sans', sans-serif !important; /* Sans Serif */
     font-weight: 800 !important; /* BOLD Title */
     font-size: 1.8rem !important; /* Sleek thread/post title size */
@@ -607,7 +607,7 @@ a[href*="/ranking"],
     }
   }
   
-  .Hero-subtitle, .DiscussionHero-subtitle {
+  .Hero-subtitle {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
     font-size: 0.95rem !important; /* Smaller sub-forum title */
     font-weight: 500 !important;
@@ -617,6 +617,75 @@ a[href*="/ranking"],
   }
 
   /* Style Category Tag Badges inside the Magenta Banner (No solid black overlay) */
+  .TagLabel, .TagsLabel a, a.TagLabel {
+    background: #f6f4f0 !important; /* Matches base background */
+    border: 2px solid #191919 !important;
+    border-radius: 9999px !important; /* Pill shaped tags */
+    padding: 3px 10px !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    color: #191919 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    box-shadow: 2px 2px 0px 0px #191919 !important;
+    margin-right: 6px !important;
+    display: inline-flex !important;
+    align-items: center;
+    
+    .icon {
+      margin-right: 4px !important;
+    }
+    
+    &:hover {
+      background: #fcfbf9 !important;
+      color: #191919 !important;
+    }
+  }
+}
+
+/* Discussion Page Hero Banner Overrides (Green) */
+.DiscussionHero {
+  text-shadow: none !important;
+  color: #191919 !important;
+  background-color: #72b72a !important; /* Bold Green */
+  border-bottom: 2px solid #191919 !important;
+  padding: 0.8rem 1.5rem !important; /* Sleek ultra-narrow banner height */
+  text-align: left !important; /* Left Aligned */
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important; /* Align left */
+  }
+
+  .containerNarrow {
+    max-width: 100% !important; /* Stretch container */
+    width: 100% !important;
+  }
+
+  .DiscussionHero-title {
+    font-family: 'Plus Jakarta Sans', sans-serif !important; /* Sans Serif */
+    font-weight: 800 !important; /* BOLD Title */
+    font-size: 1.8rem !important; /* Sleek thread/post title size */
+    color: #191919 !important;
+    margin: 0 !important;
+    line-height: 1.3 !important;
+    white-space: normal !important; /* Allow natural text wrapping */
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+  
+  .DiscussionHero-subtitle {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 0.95rem !important; /* Smaller sub-forum title */
+    font-weight: 500 !important;
+    color: rgba(25, 25, 25, 0.7) !important;
+    opacity: 1 !important;
+    margin-top: 0.2rem !important;
+  }
+
+  /* Style Category Tag Badges inside the Green Banner */
   .TagLabel, .TagsLabel a, a.TagLabel, .DiscussionHero-tags a {
     background: #f6f4f0 !important; /* Matches base background */
     border: 2px solid #191919 !important;
